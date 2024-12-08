@@ -1,18 +1,6 @@
-import sys
-import os
 import json
 from datetime import datetime
 import time
-
-
-sys.path = []
-dirname = os.path.dirname(os.path.dirname(__file__))
-libpath = os.path.join(dirname, 'lib/python3.10/site-packages')
-for path in [libpath,'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\DLLs', 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib','/var/task', '/opt/python/lib/python3.10/site-packages', '/opt/python', '/var/runtime', '/var/lang/lib/python310.zip', '/var/lang/lib/python3.10', '/var/lang/lib/python3.10/lib-dynload', '/var/lang/lib/python3.10/site-packages']:
-    sys.path.insert(0, path)
-
-#print("sys.path inside main",sys.path)
-
 import tiktoken
 
 def num_tokens_from_text(text, model="gpt-4o"):

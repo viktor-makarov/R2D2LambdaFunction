@@ -1,0 +1,1 @@
+from .main import extractTextFromFileRouter as extractTextFromFileRouter
