@@ -1,7 +1,7 @@
-import countTokens;
+import extractTextFromFile;
 
-event = {"text": "test text from AWS","model": "gpt-4o"}
+event = {"url": "https://r2d2storagedev.s3.eu-north-1.amazonaws.com/incoming_files/test_text2.txt"}
 
-result = countTokens.countTokenInTextRouter(event,"")
+result = extractTextFromFile.extractTextFromFileRouter(event,"")
 
 print("result",result)
