@@ -2,8 +2,10 @@ import http.client
 import urllib.parse
 from io import BytesIO
 from docx import Document
-import openpyxl
+import pandas as pd
 import PyPDF2
+
+
 
 
 def download_file(url):
@@ -25,27 +27,15 @@ def download_file(url):
 def extracttextfromtxt(txt_stream):
     return txt_stream.read().decode('utf-8')
 
-def extracttextfromxlsx(xlsx_stream):
-    wb = openpyxl.load_workbook(xlsx_stream, data_only=True)
-    text = []
-    for sheet in wb.sheetnames:
-        ws = wb[sheet]
-        for row in ws.iter_rows():
-            text.append(' '.join([str(cell.value) if cell.value is not None else '' for cell in row]))
-    return "\n".join(text)
-
 def extracttextfromdocx(docx_stream):
     doc = Document(docx_stream)
     return "\n".join([paragraph.text for paragraph in doc.paragraphs])
 
 def extracttextfromxlsx(xlsx_stream):
-    wb = openpyxl.load_workbook(xlsx_stream, data_only=True)
-    text = []
-    for sheet in wb.sheetnames:
-        ws = wb[sheet]
-        for row in ws.iter_rows():
-            text.append(' '.join([str(cell.value) if cell.value is not None else '' for cell in row]))
-    return "\n".join(text)
+    df = pd.read_excel(xlsx_stream)
+    dftext = df.to_string(index=False)
+    
+    return dftext
 
 def extracttextfrompdf(pdf_stream):
 
